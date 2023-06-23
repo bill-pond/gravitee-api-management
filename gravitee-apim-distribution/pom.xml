@@ -610,6 +610,14 @@
             <type>zip</type>
             <scope>runtime</scope>
         </dependency>
+        <!-- secret providers -->
+        <dependency>
+            <groupId>io.gravitee.secretprovider</groupId>
+            <artifactId>gravitee-secret-provider-kubernetes</artifactId>
+            <version>${gravitee-secretprovider-kubernetes.version}</version>
+            <type>zip</type>
+            <scope>runtime</scope>
+        </dependency>
 
         <!-- Tracers -->
         <dependency>
@@ -788,6 +796,15 @@
                     <groupId>com.graviteesource.apim</groupId>
                     <artifactId>gravitee-apim-repository-bridge-http-client</artifactId>
                     <version>${gravitee-repository-bridge.version}</version>
+                    <type>zip</type>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <!-- Secret Providers -->
+                <dependency>
+                    <groupId>com.graviteesource.secretprovider</groupId>
+                    <artifactId>gravitee-secret-provider-hc-vault</artifactId>
+                    <version>${gravitee-secretprovider-hc-vault.version}</version>
                     <type>zip</type>
                     <scope>runtime</scope>
                 </dependency>

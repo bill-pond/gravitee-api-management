@@ -11,6 +11,76 @@
 # Please have a look to http://docs.gravitee.io/ for more options and fine-grained granularity
 ############################################################################################################
 
+# Secret managers config in order to use secret://<plugin id>/<secret-path>[:key][?namespace=<name>&keymap=<mapping>&option=value...] syntax
+secrets:
+  # loadFirst: kubernetes # if ever we want to store creds for another secret provider (e.g. store TLS information for VAULT in k8s)
+  kubernetes:
+    enabled: false
+    # namespace: default  # if left empty will assume the namespace is the current namespace in which gravitee is deployed
+    # kubeConfigFile: /opt/gravitee/config/kube-config.json
+    # timeoutMs: 3000
+
+  aws:
+    enabled: false
+#    region: eu-north-1
+#    # connectionTimeoutMs: 5000
+#    # fipsEnabled: false
+#    # endpointOverride: # to override AWS endpoint
+#    auth:
+#      provider: static # one of "static", "chain"
+#    ### static
+#      config:
+#        accessKeyId:
+#        secretAccessKey:
+#    ### chain
+#        # no config required
+#        # see https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/credentials-chain.html
+
+  vault:
+    enabled: false
+#    host: 127.0.0.1
+#    port: 8200
+#    # namespace: default
+#    # kvEngine: V2                          # defaults to v2 can be "v1", no mixing supported
+#    # readTimeoutSec: 2
+#    # connectTimeoutSec: 3
+#    ssl:
+#      enabled: false                        # not for production
+#      # format: "pemfile"                   # one of "pem","pemfile" "keystore", "truststore"
+#      # pem:                                # pem in base64 with headers value
+#      # file: /opt/gravitee/vault.pem       # also used for keystore and truststore files
+#      # password:                           # for key store, otherwise ignored
+#      # mTLS:
+#        # enabled: false
+#        # format: pemfile                    # can also be 'pem' to inline the cert (same as bove)
+#        # cert:                              # filename or inline cert
+#        # key:                               # filename or inline private key
+#    auth:
+#      method: token # one of "token", "github", "userpass", "approle"
+#    ### github config
+#      config:
+#        token:
+#    ### github config
+#        # token:
+#        # path: <non standard github path>
+#    ### userpass config
+#        # username:
+#        # password:
+#        # path: <non standard github path>
+#    ### approle
+#        # roleId:
+#        # secretId:
+#    # RECOMMENDED but works without
+#    # for both watch and read
+#    retry:
+#      attempts: 2          # set '0' to disable
+#      intervalMs: 1000
+#    # if false an error will be displayed at load time it will start up anyway
+#    watch:
+#      enabled: true
+#      pollIntervalSec: 30
+
+
 # Gateway HTTP server
 #http:
 #  port: 8092
