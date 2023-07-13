@@ -56,6 +56,7 @@ import io.gravitee.gateway.resource.ResourceLifecycleManager;
 import io.gravitee.gateway.resource.internal.ResourceConfigurationFactoryImpl;
 import io.gravitee.gateway.resource.internal.v4.DefaultResourceManager;
 import io.gravitee.node.api.Node;
+import io.gravitee.node.api.cache.CacheManager;
 import io.gravitee.node.api.configuration.Configuration;
 import io.gravitee.plugin.apiservice.ApiServicePluginManager;
 import io.gravitee.plugin.core.api.ConfigurablePluginManager;
@@ -109,7 +110,8 @@ public class DefaultApiReactorFactory implements ReactorFactory<Api> {
         final OrganizationManager organizationManager,
         final io.gravitee.gateway.reactive.handlers.api.flow.resolver.FlowResolverFactory flowResolverFactory,
         final RequestTimeoutConfiguration requestTimeoutConfiguration,
-        final ReporterService reporterService
+        final ReporterService reporterService,
+        final CacheManager cacheManager
     ) {
         this.applicationContext = applicationContext;
         this.configuration = configuration;
@@ -120,7 +122,7 @@ public class DefaultApiReactorFactory implements ReactorFactory<Api> {
         this.apiServicePluginManager = apiServicePluginManager;
         this.platformPolicyChainFactory = platformPolicyChainFactory;
         this.organizationManager = organizationManager;
-        this.apiProcessorChainFactory = new ApiProcessorChainFactory(configuration, node, reporterService);
+        this.apiProcessorChainFactory = new ApiProcessorChainFactory(configuration, node, reporterService, cacheManager);
         this.flowResolverFactory = flowResolverFactory;
         this.v4FlowResolverFactory = flowResolverFactory();
         this.requestTimeoutConfiguration = requestTimeoutConfiguration;

@@ -26,7 +26,6 @@ import io.gravitee.definition.model.v4.analytics.logging.Logging;
 import io.gravitee.definition.model.v4.analytics.logging.LoggingMode;
 import io.gravitee.definition.model.v4.flow.Flow;
 import io.gravitee.definition.model.v4.flow.selector.HttpSelector;
-import io.gravitee.definition.model.v4.flow.selector.Selector;
 import io.gravitee.definition.model.v4.listener.http.HttpListener;
 import io.gravitee.definition.model.v4.listener.subscription.SubscriptionListener;
 import io.gravitee.gateway.reactive.core.processor.Processor;
@@ -45,7 +44,9 @@ import io.gravitee.gateway.reactive.handlers.api.v4.processor.logging.LogRequest
 import io.gravitee.gateway.reactive.handlers.api.v4.processor.logging.LogResponseProcessor;
 import io.gravitee.gateway.report.ReporterService;
 import io.gravitee.node.api.Node;
+import io.gravitee.node.api.cache.CacheManager;
 import io.gravitee.node.api.configuration.Configuration;
+import io.gravitee.node.plugin.cache.standalone.StandaloneCacheManager;
 import io.reactivex.rxjava3.core.Flowable;
 import java.util.List;
 import java.util.Set;
@@ -73,14 +74,16 @@ class ApiProcessorChainFactoryTest {
     private ReporterService reporterService;
 
     private ApiProcessorChainFactory apiProcessorChainFactory;
+    private CacheManager standaloneCacheManager;
 
     @BeforeEach
     public void beforeEach() {
+        standaloneCacheManager = new StandaloneCacheManager();
         when(configuration.getProperty("services.tracing.enabled", Boolean.class, false)).thenReturn(false);
         when(configuration.getProperty("handlers.request.headers.x-forwarded-prefix", Boolean.class, false)).thenReturn(false);
         when(configuration.getProperty("handlers.request.client.header", String.class, DEFAULT_CLIENT_IDENTIFIER_HEADER))
             .thenReturn(DEFAULT_CLIENT_IDENTIFIER_HEADER);
-        apiProcessorChainFactory = new ApiProcessorChainFactory(configuration, node, reporterService);
+        apiProcessorChainFactory = new ApiProcessorChainFactory(configuration, node, reporterService, standaloneCacheManager);
     }
 
     @Test
@@ -168,7 +171,7 @@ class ApiProcessorChainFactoryTest {
     @Test
     void shouldReturnXForwardedBeforeApiExecutionChainWithHttpListenerAndOverrideXForwarded() {
         when(configuration.getProperty("handlers.request.headers.x-forwarded-prefix", Boolean.class, false)).thenReturn(true);
-        apiProcessorChainFactory = new ApiProcessorChainFactory(configuration, node, reporterService);
+        apiProcessorChainFactory = new ApiProcessorChainFactory(configuration, node, reporterService, standaloneCacheManager);
 
         io.gravitee.definition.model.v4.Api apiModel = new io.gravitee.definition.model.v4.Api();
         HttpListener httpListener = new HttpListener();
@@ -187,7 +190,7 @@ class ApiProcessorChainFactoryTest {
 
     @Test
     void shouldReturnPathParamProcessorBeforeApiExecution() {
-        apiProcessorChainFactory = new ApiProcessorChainFactory(configuration, node, reporterService);
+        apiProcessorChainFactory = new ApiProcessorChainFactory(configuration, node, reporterService, standaloneCacheManager);
 
         io.gravitee.definition.model.v4.Api apiModel = new io.gravitee.definition.model.v4.Api();
         HttpListener httpListener = new HttpListener();
