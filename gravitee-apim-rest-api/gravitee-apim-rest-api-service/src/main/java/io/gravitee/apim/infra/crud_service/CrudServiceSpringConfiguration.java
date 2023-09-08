@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.apim.infra.spring;
+package io.gravitee.apim.infra.crud_service;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages = { "io.gravitee.apim.infra" })
-public class InfraServiceSpringConfiguration {}
+@ComponentScan(basePackages = { "io.gravitee.apim.infra.crud_service" })
+public class CrudServiceSpringConfiguration {}
