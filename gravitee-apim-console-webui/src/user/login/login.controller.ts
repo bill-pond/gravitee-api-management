@@ -15,7 +15,6 @@
  */
 import { GioPendoService } from '@gravitee/ui-analytics';
 import { StateParams, StateService } from '@uirouter/core';
-import { IScope } from 'angular';
 import * as _ from 'lodash';
 
 import { IdentityProvider } from '../../entities/identity-provider/identityProvider';
@@ -36,7 +35,7 @@ class LoginController {
     private UserService: UserService,
     private $state: StateService,
     private Constants,
-    private $rootScope: IScope,
+    private $rootScope,
     private RouterService: RouterService,
     private identityProviders,
     private $window,
@@ -54,6 +53,7 @@ class LoginController {
   }
 
   $onInit() {
+    this.$rootScope.consoleTitle = this.Constants.org.settings.management.title;
     this.ReCaptchaService.displayBadge();
     document.addEventListener('click', this._toDisabledMode);
   }
