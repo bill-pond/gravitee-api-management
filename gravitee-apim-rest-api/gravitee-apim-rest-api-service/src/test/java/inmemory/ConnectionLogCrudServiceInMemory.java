@@ -16,6 +16,8 @@
 package inmemory;
 
 import io.gravitee.apim.core.log.crud_service.ConnectionLogCrudService;
+import io.gravitee.rest.api.model.analytics.Interval;
+import io.gravitee.rest.api.model.analytics.Timestamp;
 import io.gravitee.rest.api.model.common.Pageable;
 import io.gravitee.rest.api.model.v4.log.SearchLogResponse;
 import io.gravitee.rest.api.model.v4.log.connection.BaseConnectionLog;
@@ -30,7 +32,7 @@ public class ConnectionLogCrudServiceInMemory implements ConnectionLogCrudServic
     private final List<BaseConnectionLog> storage = new ArrayList<>();
 
     @Override
-    public SearchLogResponse<BaseConnectionLog> searchApiConnectionLog(String apiId, Pageable pageable) {
+    public SearchLogResponse<BaseConnectionLog> searchApiConnectionLog(String apiId, Interval interval, Pageable pageable) {
         Predicate<BaseConnectionLog> predicate = connectionLog -> connectionLog.getApiId().equals(apiId);
         var pageNumber = pageable.getPageNumber();
         var pageSize = pageable.getPageSize();

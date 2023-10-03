@@ -15,10 +15,12 @@
  */
 package io.gravitee.apim.core.log.crud_service;
 
+import io.gravitee.rest.api.model.analytics.Interval;
+import io.gravitee.rest.api.model.analytics.Timestamp;
 import io.gravitee.rest.api.model.common.Pageable;
 import io.gravitee.rest.api.model.v4.log.SearchLogResponse;
 import io.gravitee.rest.api.model.v4.log.connection.BaseConnectionLog;
 
 public interface ConnectionLogCrudService {
-    SearchLogResponse<BaseConnectionLog> searchApiConnectionLog(String apiId, Pageable pageable);
+    SearchLogResponse<BaseConnectionLog> searchApiConnectionLog(String apiId, Interval interval, Pageable pageable);
 }

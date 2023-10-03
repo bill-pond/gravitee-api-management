@@ -56,7 +56,7 @@ public class ConnectionLogCrudServiceImplTest {
         void should_search_api_connection_logs() throws AnalyticsException {
             when(logRepository.searchConnectionLog(any())).thenReturn(new LogResponse<>(0L, List.of()));
 
-            logStorageService.searchApiConnectionLog("apiId", new PageableImpl(1, 10));
+            logStorageService.searchApiConnectionLog("apiId", null, new PageableImpl(1, 10));
 
             var captor = ArgumentCaptor.forClass(ConnectionLogQuery.class);
             verify(logRepository).searchConnectionLog(captor.capture());
@@ -88,7 +88,7 @@ public class ConnectionLogCrudServiceImplTest {
                     )
                 );
 
-            var result = logStorageService.searchApiConnectionLog("apiId", new PageableImpl(1, 10));
+            var result = logStorageService.searchApiConnectionLog("apiId", null, new PageableImpl(1, 10));
 
             SoftAssertions.assertSoftly(soft -> {
                 assertThat(result.total()).isOne();
