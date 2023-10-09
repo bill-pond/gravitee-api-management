@@ -29,4 +29,12 @@ export class ApiDocumentationV4Component implements OnDestroy {
     this.unsubscribe$.next();
     this.unsubscribe$.unsubscribe();
   }
+
+  addFolder() {
+    throw new Error('not implemented');
+  }
+
+  addPage() {
+    throw new Error('not implemented');
+  }
 }
