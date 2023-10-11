@@ -18,14 +18,33 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { GioIconsModule } from '@gravitee/ui-particles-angular';
 import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { ApiDocumentationV4EmptyStateComponent } from './documentation-empty-state/api-documentation-v4-empty-state.component';
 import { ApiDocumentationV4NavigationHeaderComponent } from './document-navigation-header/api-documentation-v4-navigation-header.component';
 import { ApiDocumentationV4Component } from './api-documentation-v4.component';
+import { ApiDocumentationV4AddFolderDialog } from './documentation-add-folder-dialog/api-documentation-v4-add-folder-dialog.component';
 
 @NgModule({
-  declarations: [ApiDocumentationV4Component, ApiDocumentationV4EmptyStateComponent, ApiDocumentationV4NavigationHeaderComponent],
+  declarations: [
+    ApiDocumentationV4Component,
+    ApiDocumentationV4EmptyStateComponent,
+    ApiDocumentationV4NavigationHeaderComponent,
+    ApiDocumentationV4AddFolderDialog,
+  ],
   exports: [ApiDocumentationV4Component],
-  imports: [CommonModule, MatCardModule, GioIconsModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    GioIconsModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatRadioModule,
+    MatDialogModule,
+  ],
 })
 export class ApiDocumentationV4Module {}

@@ -15,7 +15,10 @@
  */
 
 import { Component, OnDestroy } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+
+import { ApiDocumentationV4AddFolderDialog } from './documentation-add-folder-dialog/api-documentation-v4-add-folder-dialog.component';
 
 @Component({
   selector: 'api-documentation-v4',
@@ -24,14 +27,16 @@ import { Subject } from 'rxjs';
 })
 export class ApiDocumentationV4Component implements OnDestroy {
   private unsubscribe$: Subject<void> = new Subject<void>();
+  dialogResult: Observable<any>;
 
+  constructor(private matDialog: MatDialog) {}
   ngOnDestroy() {
     this.unsubscribe$.next();
     this.unsubscribe$.unsubscribe();
   }
 
   addFolder() {
-    throw new Error('not implemented');
+    this.dialogResult = this.matDialog.open(ApiDocumentationV4AddFolderDialog).afterClosed();
   }
 
   addPage() {
