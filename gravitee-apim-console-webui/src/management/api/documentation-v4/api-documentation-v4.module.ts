@@ -24,7 +24,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { ApiDocumentationV4EmptyStateComponent } from './documentation-empty-state/api-documentation-v4-empty-state.component';
-import { ApiDocumentationV4NavigationHeaderComponent } from './document-navigation-header/api-documentation-v4-navigation-header.component';
+import { ApiDocumentationV4NavigationHeaderComponent } from './documentation-navigation-header/api-documentation-v4-navigation-header.component';
 import { ApiDocumentationV4Component } from './api-documentation-v4.component';
 import { ApiDocumentationV4AddFolderDialog } from './documentation-add-folder-dialog/api-documentation-v4-add-folder-dialog.component';
 

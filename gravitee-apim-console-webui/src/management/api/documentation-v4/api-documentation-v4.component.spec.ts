@@ -23,7 +23,7 @@ import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { ApiDocumentationV4Component } from './api-documentation-v4.component';
 import { ApiDocumentationV4Module } from './api-documentation-v4.module';
 import { ApiDocumentationV4EmptyStateHarness } from './documentation-empty-state/api-documentation-v4-empty-state.harness';
-import { ApiDocumentationV4NavigationHeaderHarness } from './document-navigation-header/api-documentation-v4-navigation-header.harness';
+import { ApiDocumentationV4NavigationHeaderHarness } from './documentation-navigation-header/api-documentation-v4-navigation-header.harness';
 import { ApiDocumentationV4AddFolderDialogHarness } from './documentation-add-folder-dialog/api-documentation-v4-add-folder-dialog.harness';
 
 describe('ApiDocumentationV4', () => {
