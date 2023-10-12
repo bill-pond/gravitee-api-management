@@ -93,6 +93,7 @@ import { MessagesComponent } from '../messages/messages.component';
 import TenantService from '../../services/tenant.service';
 import TagService from '../../services/tag.service';
 import { ApimFeature } from '../../shared/components/gio-license/gio-license-data';
+import { ApiDocumentationV4NewPageComponent } from './documentation-v4/documentation-new-page/api-documentation-v4-new-page.component';
 
 // New Angular routing
 export const states: Ng2StateDeclaration[] = [
@@ -1375,6 +1376,15 @@ export const states: Ng2StateDeclaration[] = [
       docs: null,
     },
     component: ApiDocumentationV4Component,
+  },
+  {
+    name: 'management.apis.documentationV4-create',
+    url: '/documentation-v4/create',
+    data: {
+      useAngularMaterial: true,
+      docs: null,
+    },
+    component: ApiDocumentationV4NewPageComponent,
   },
   {
     name: 'management.apis.policyStudio',

@@ -14,11 +14,13 @@
  * limitations under the License.
  */
 
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 
 import { ApiDocumentationV4AddFolderDialog } from './documentation-add-folder-dialog/api-documentation-v4-add-folder-dialog.component';
+import { UIRouterState } from '../../../ajs-upgraded-providers';
+import { StateService } from '@uirouter/angularjs';
 
 @Component({
   selector: 'api-documentation-v4',
@@ -29,7 +31,7 @@ export class ApiDocumentationV4Component implements OnDestroy {
   private unsubscribe$: Subject<void> = new Subject<void>();
   dialogResult: Observable<any>;
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(private matDialog: MatDialog, @Inject(UIRouterState) private readonly ajsState: StateService) {}
   ngOnDestroy() {
     this.unsubscribe$.next();
     this.unsubscribe$.unsubscribe();
@@ -37,9 +39,10 @@ export class ApiDocumentationV4Component implements OnDestroy {
 
   addFolder() {
     this.dialogResult = this.matDialog.open(ApiDocumentationV4AddFolderDialog).afterClosed();
+    this.dialogResult.subscribe((res) => console.log('Create folder', res));
   }
 
   addPage() {
-    throw new Error('not implemented');
+    this.ajsState.go('management.apis.documentationV4-create');
   }
 }
