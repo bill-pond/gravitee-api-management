@@ -1,0 +1,23 @@
+<div class="visibility">Visibility</div>
+<div class="visibility__subtitle">This can be changed later</div>
+
+<mat-radio-group [(ngModel)]="_value" class="gio-radio-group" (change)="_onChange($event.value)">
+  <mat-radio-button value="PUBLIC" class="gio-radio-button">
+    <div class="gio-radio-button__content">
+      <div class="gio-radio-button__content__icon">
+        <mat-icon svgIcon="gio:language"></mat-icon>
+      </div>
+      <div class="gio-radio-button__content__title">Public</div>
+      <div class="gio-radio-button__content__subtitle">Requires no subscription to view</div>
+    </div>
+  </mat-radio-button>
+  <mat-radio-button value="PRIVATE" class="gio-radio-button">
+    <div class="gio-radio-button__content">
+      <div class="gio-radio-button__content__icon">
+        <mat-icon svgIcon="gio:lock"></mat-icon>
+      </div>
+      <div class="gio-radio-button__content__title">Private</div>
+      <div class="gio-radio-button__content__subtitle">Requires approved subscription to view</div>
+    </div>
+  </mat-radio-button>
+</mat-radio-group>

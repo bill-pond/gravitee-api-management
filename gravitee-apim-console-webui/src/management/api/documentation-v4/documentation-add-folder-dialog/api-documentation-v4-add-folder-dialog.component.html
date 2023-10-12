@@ -26,28 +26,7 @@
     <mat-label>Name</mat-label>
     <input matInput formControlName="name" placeholder="Name" />
   </mat-form-field>
-  <div class="new-folder-form__visibility">Visibility</div>
-  <div class="new-folder-form__visibility__subtitle">This can be changed later</div>
-  <mat-radio-group formControlName="visibility" class="gio-form-radio-toggle-group">
-    <mat-radio-button value="PUBLIC" #publicRadioButton>
-      <div class="gio-form-radio-toggle-button" [class.gio-form-radio-toggle-button__selected]="publicRadioButton.checked">
-        <div class="gio-form-radio-toggle-button__icon" [class.gio-form-radio-toggle-button__icon__selected]="publicRadioButton.checked">
-          <mat-icon svgIcon="gio:language"></mat-icon>
-        </div>
-        <div class="gio-form-radio-toggle-button__title">Public</div>
-        <div class="gio-form-radio-toggle-button__subtitle">Requires no subscription to view</div>
-      </div>
-    </mat-radio-button>
-    <mat-radio-button value="PRIVATE" #privateRadioButton disableRipple="true">
-      <div class="gio-form-radio-toggle-button" [class.gio-form-radio-toggle-button__selected]="privateRadioButton.checked">
-        <div class="gio-form-radio-toggle-button__icon" [class.gio-form-radio-toggle-button__icon__selected]="privateRadioButton.checked">
-          <mat-icon svgIcon="gio:lock"></mat-icon>
-        </div>
-        <div class="gio-form-radio-toggle-button__title">Private</div>
-        <div class="gio-form-radio-toggle-button__subtitle">Requires approved subscription to view</div>
-      </div>
-    </mat-radio-button>
-  </mat-radio-group>
+  <api-documentation-visibility formControlName="visibility"></api-documentation-visibility>
   <div class="new-folder-form__actions">
     <button mat-stroked-button type="button" (click)="cancel()">Cancel</button>
     <button mat-flat-button color="primary" [disabled]="formGroup.invalid">Add folder</button>
