@@ -57,4 +57,24 @@ public class InMemoryConfiguration {
     public PageQueryServiceInMemory pageQueryServiceInMemory() {
         return new PageQueryServiceInMemory();
     }
+
+    @Bean
+    public AuditCrudServiceInMemory auditCrudServiceInMemory() {
+        return new AuditCrudServiceInMemory();
+    }
+
+    @Bean
+    public UserCrudServiceInMemory userCrudServiceInMemory() {
+        return new UserCrudServiceInMemory();
+    }
+
+    @Bean
+    public PageCrudServiceInMemory pageCrudServiceInMemory() {
+        return new PageCrudServiceInMemory();
+    }
+
+    @Bean
+    public PageRevisionCrudServiceInMemory pageRevisionCrudServiceInMemory() {
+        return new PageRevisionCrudServiceInMemory();
+    }
 }
