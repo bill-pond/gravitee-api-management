@@ -22,10 +22,12 @@ import io.gravitee.apim.core.api.domain_service.VerifyApiPathDomainService;
 import io.gravitee.apim.core.api.query_service.ApiQueryService;
 import io.gravitee.apim.core.audit.crud_service.AuditCrudService;
 import io.gravitee.apim.core.audit.domain_service.AuditDomainService;
+import io.gravitee.apim.core.documentation.crud_service.PageCrudService;
+import io.gravitee.apim.core.documentation.crud_service.PageRevisionCrudService;
 import io.gravitee.apim.core.documentation.domain_service.ApiDocumentationDomainService;
+import io.gravitee.apim.core.documentation.domain_service.CreateApiDocumentationDomainService;
 import io.gravitee.apim.core.documentation.query_service.PageQueryService;
 import io.gravitee.apim.core.user.crud_service.UserCrudService;
-
 import io.gravitee.apim.infra.json.jackson.JacksonJsonDiffProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -60,5 +62,15 @@ public class CoreServiceSpringConfiguration {
     @Bean
     public ApiDocumentationDomainService apiDocumentationDomainService(PageQueryService pageQueryService) {
         return new ApiDocumentationDomainService(pageQueryService);
+    }
+
+    @Bean
+    public CreateApiDocumentationDomainService createApiDocumentationDomainService(
+        PageQueryService pageQueryService,
+        PageCrudService pageCrudService,
+        PageRevisionCrudService pageRevisionCrudService,
+        AuditDomainService auditDomainService
+    ) {
+        return new CreateApiDocumentationDomainService(pageQueryService, pageCrudService, pageRevisionCrudService, auditDomainService);
     }
 }
