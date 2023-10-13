@@ -16,10 +16,7 @@
 package io.gravitee.apim.core.documentation.model;
 
 import java.util.Date;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @Builder
@@ -36,18 +33,20 @@ public class Page {
     private String crossId;
 
     private String referenceId;
-    private ReferenceType referenceType;
+    private Page.ReferenceType referenceType;
     private String name;
-    private Type type;
-    private String content;
+    private Page.Type type;
     private String lastContributor;
     private int order;
     private boolean published;
-    private Visibility visibility;
-    private boolean homepage;
+    private Page.Visibility visibility;
     private Date createdAt;
     private Date updatedAt;
     private String parentId;
+
+    private String content;
+    private boolean homepage;
+    private boolean generalConditions;
 
     public enum Visibility {
         PUBLIC,
@@ -62,5 +61,13 @@ public class Page {
     public enum ReferenceType {
         ENVIRONMENT,
         API,
+    }
+
+    public boolean isMarkdown() {
+        return Type.MARKDOWN.equals(this.type);
+    }
+
+    public boolean isFolder() {
+        return Type.FOLDER.equals(this.type);
     }
 }
